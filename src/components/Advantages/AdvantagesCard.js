@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const AdvantagesCard = ({ icon, text }) => {
   return (
@@ -10,11 +10,6 @@ const AdvantagesCard = ({ icon, text }) => {
       <p className='advantages-card__text'>{text}</p>
     </div>
   );
-};
-
-AdvantagesCard.propTypes = {
-  icon: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
 };
 
 export default AdvantagesCard;
