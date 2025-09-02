@@ -5,7 +5,7 @@ const HotelCard = ({ hotel }) => {
   return (
     <div className='homes-guests-card'>
       <figure>
-        <img src={hotel.imageUrl} alt={`${hotel.name} picture`} />
+        <img src={hotel.imageUrl} alt={`${hotel.name}`} />
         <figcaption>
           <p>{hotel.name}</p>
           <p>
