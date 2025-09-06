@@ -1,0 +1,253 @@
+.triphouse {
+  background-image: url('../../assets/images/triphouse-background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.triphouse-content {
+    padding: 293px 104px 0;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.triphouse__heading {
+    font-size: 50px;
+    color: #ffffff;
+    font-weight: 500;
+    line-height: 59px;
+}
+
+.triphouse-apps {
+    padding: 120px 0;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.search-form {
+    padding-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(2, 64px);
+    font-size: 18px;
+    width: 100%;
+}
+
+.search-form__label {
+    text-align: left;
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: 400;
+    line-height: 21px;
+    align-content: center;
+}
+
+.search-form__label-1 {
+    grid-row: 1;
+    grid-column: 1 / span 4;
+}
+
+.search-form__label-2 {
+    grid-row: 1;
+    grid-column: 5 / span 3;
+}
+
+.search-form__label-md {
+    display: none;
+}
+
+.search-inputs__search-icon {
+    display: none;
+}
+
+.search-inputs {
+    background-color: #ffffff;
+    border: 3px none #ffffff;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 64px;
+    grid-row: 2;
+    grid-column: 1 / span 12;
+}
+
+.search-inputs__input-1 {
+    border: 3px none #ffffff;
+    border-radius: 8px 0 0 8px;
+    grid-row: 1;
+    grid-column: 1 / span 4;
+}
+
+.search-inputs__input-md-1 {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.search-inputs__input-2 {
+    border: 3px solid #f5bd41;
+    border-radius: 8px;
+    font-size: 18px;
+    text-align: center;
+    grid-row: 1;
+    grid-column: 5 / span 2;
+}
+
+.search-inputs__input-3 {
+    border: 3px none #ffffff;
+    font-size: 18px;
+    text-align: center;
+    grid-row: 1;
+    grid-column: 7 / span 4;
+}
+
+.search-inputs__input-3-adults {
+    display: none;
+}
+
+.search-inputs__input-3-children {
+    display: none;
+}
+
+.search-inputs__input-3-rooms {
+    display: none;
+}
+
+.search-form__button {
+    background-color: #3077c6;
+    border: 3px none #3077c6;
+    color: #ffffff;
+    border-radius: 8px;
+    font-size: 24px;
+    grid-row: 1;
+    grid-column: 11 / span 2;
+}
+
+.search-input-md {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    /*Tablets*/
+    .triphouse-content {
+        padding: 88px 16px 0;
+    }
+
+    .triphouse__heading {
+        font-size: 30px;
+        line-height: 35px;
+    }
+
+    .triphouse-apps {
+        padding: 32px 0 40px;
+    }
+
+    .search-form {
+        padding: 88px 16px 32px;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: auto;
+        font-size: 15px;
+    }
+
+    .search-form__label-1 {
+        display: none;
+    }
+
+    .search-form__label-2 {
+        display: none;
+    }
+
+    .search-input-md {
+        position: relative;
+        display: flex;
+        justify-content: stretch;
+        width: 100%;
+    }
+
+    .search-form__label-md {
+        display: initial;
+        position: absolute;
+        left: 4px;
+        top: 2px;
+        font-size: 12px;
+    }
+
+    .search-inputs {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(4, var(--form-row-height));
+        grid-row: 1;
+        grid-column: 1 / span 6;
+        background-color: #f5bd41;
+        border: 8px solid #f5bd41;
+        gap: 8px;
+    }
+
+    .search-inputs__input-1 {
+        grid-row: 1;
+        grid-column: 1 / span 6;
+    }
+
+    .search-inputs__search-icon {
+        display: initial;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        left: 12px;
+        top: 16px;
+    }
+
+    .search-inputs__input-1--relative {
+        position: relative;
+    }
+
+    .search-inputs__input-2 {
+        display: none;
+    }
+
+    .search-inputs__input-md {
+        flex-basis: 100%;
+    }
+
+    .search-input-md-2-in {
+        grid-row: 2;
+        grid-column: 1 / span 3;
+    }
+
+    .search-input-md-2-out {
+        grid-row: 2;
+        grid-column: 4 / span 3;
+    }
+
+    .search-inputs__input-3 {
+        font-size: 15px;
+        display: none;
+    }
+
+    .search-inputs__input-md-3 {
+        display: initial;
+        text-align: center;
+        width: 100%;
+    }
+
+    .search-inputs__input-3-adults {
+        grid-row: 3;
+        grid-column: 1 / span 2;
+    }
+
+    .search-inputs__input-3-children {
+        grid-row: 3;
+        grid-column: 3 / span 2;
+    }
+
+    .search-inputs__input-3-rooms {
+        grid-row: 3;
+        grid-column: 5 / span 2;
+    }
+
+    .search-form__button {
+        font-size: 19px;
+        grid-row: 4;
+        grid-column: 1 / span 6;
+    }
+}
