@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import HotelsList from './HotelsList';
+import './HomesGuests.css';
 
 const HomesGuests = ({ hotels }) => {
   return (
