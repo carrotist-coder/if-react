@@ -1,25 +1,4 @@
-@import url('assets/css/fonts.css');
-
-* {
-  margin: 0;
-  box-sizing: border-box;
-}
-
-:root {
-  --col-width: calc(100% / 12);
-}
-
-body {
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-}
-
-.svg-sprite {
-  position: absolute;
-  visibility: hidden;
-  width: 0;
-  height: 0;
-}
+@import url('assets/css/global.css');
 
 header {
   min-width: 1440px;
@@ -338,49 +317,6 @@ main {
   width: 100%;
   margin: 0 auto;
   padding: 120px 104px;
-}
-
-.advantages {
-  color: #ffffff;
-  padding: 120px 0;
-}
-
-.advantages-heading {
-  padding-bottom: 80px;
-}
-
-.advantages-card {
-  flex-basis: 25%;
-  text-align: center;
-}
-
-.advantages-heading__text {
-  margin-bottom: 20px;
-  position: relative;
-}
-
-.advantages-heading__text::before {
-  content: '';
-  height: 4px;
-  background-color: #f5bd41;
-  position: absolute;
-  bottom: -20px;
-  width: 100px;
-  left: 50%;
-  transform: translate(-50%);
-}
-
-.advantages-card__text {
-  color: #383838;
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 28px;
-  margin-top: 48px;
-}
-
-.advantages-card__svg {
-  width: 100px;
-  height: 100px;
 }
 
 .homes-guests,

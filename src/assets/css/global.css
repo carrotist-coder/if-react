@@ -1,0 +1,22 @@
+@import url('./fonts.css');
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --col-width: calc(100% / 12);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+}
+
+.svg-sprite {
+    position: absolute;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}

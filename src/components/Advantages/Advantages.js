@@ -1,5 +1,6 @@
 import React from 'react';
 import AdvantagesCard from './AdvantagesCard';
+import './Advantages.css';
 
 const Advantages = () => {
   const cardsData = [
