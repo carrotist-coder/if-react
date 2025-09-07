@@ -8,7 +8,6 @@ export const App = () => {
   return (
     <>
       <TripHouse />
-      <HomesGuests hotels={undefined} isAvailableHotels={true} />
       <Advantages />
       <HomesGuests hotels={hotelsData} />
     </>

@@ -1,8 +1,16 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
+import React, { useState } from 'react';
 
-const TripHouseForm = () => {
+const TripHouseForm = ({ handleSearch }) => {
+  const [destination, setDestination] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSearch(destination);
+  };
+
   return (
-    <form className='search-form'>
+    <form className='search-form' onSubmit={handleSubmit}>
       <label
         className='search-form__label search-form__label-1'
         htmlFor='destination'
@@ -22,7 +30,7 @@ const TripHouseForm = () => {
             id='destination'
             type='text'
             name='destination'
-            value='New York'
+            onChange={(e) => setDestination(e.target.value)}
           />
         </div>
         <div className='search-input-md search-input-md-2-in'>
