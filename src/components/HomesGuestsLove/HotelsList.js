@@ -5,9 +5,11 @@ import HotelCard from './HotelCard';
 const HotelsList = ({ hotels }) => {
   return (
     <div className='cards'>
-      {hotels.map((hotel) => (
-        <HotelCard key={hotel.id} hotel={hotel} />
-      ))}
+      {hotels && hotels.length > 0 ? (
+        hotels.map((hotel) => <HotelCard key={hotel.id} hotel={hotel} />)
+      ) : (
+        <div className='nothing-found'>Nothing found...</div>
+      )}
     </div>
   );
 };
