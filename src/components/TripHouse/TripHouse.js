@@ -4,6 +4,7 @@ import TripHouseForm from './TripHouseForm';
 import TripHouseApps from './TripHouseApps';
 import HomesGuests from '../HomesGuestsLove/HomesGuests';
 import axios from 'axios';
+import { API_HOTELS_URL } from '../../services';
 
 export class TripHouse extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ export class TripHouse extends Component {
 
   handleSearch = (searchTerm) => {
     axios
-      .get('https://if-student-api.onrender.com/api/hotels', {
+      .get(API_HOTELS_URL, {
         params: {
           search: searchTerm.toLowerCase(),
         },

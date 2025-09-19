@@ -4,6 +4,7 @@ import Advantages from '../Advantages/Advantages';
 import HomesGuests from '../HomesGuestsLove/HomesGuests';
 import TripHouse from '../TripHouse/TripHouse';
 import axios from 'axios';
+import { API_HOTELS_POPULAR_URL } from '../../services';
 
 export class App extends Component {
   constructor(props) {
@@ -19,11 +20,9 @@ export class App extends Component {
   }
 
   fetchHotels() {
-    axios
-      .get('https://if-student-api.onrender.com/api/hotels/popular', {})
-      .then((res) => {
-        this.setState({ homesGuestsHotels: res.data });
-      });
+    axios.get(API_HOTELS_POPULAR_URL, {}).then((res) => {
+      this.setState({ homesGuestsHotels: res.data });
+    });
   }
 
   render() {
