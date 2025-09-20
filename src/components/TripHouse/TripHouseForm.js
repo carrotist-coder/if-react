@@ -1,13 +1,16 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { useHotelsSearch } from '../../contexts/HotelsSearchContext';
+import DateRangePicker from '../DateRangePicker/DateRangePicker';
 
 const TripHouseForm = () => {
   const [destination, setDestination] = useState('');
+  const [dates, setDates] = useState({});
   const { handleSearch } = useHotelsSearch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(dates);
     handleSearch(destination);
   };
 
@@ -35,37 +38,7 @@ const TripHouseForm = () => {
             onChange={(e) => setDestination(e.target.value)}
           />
         </div>
-        <div className='search-input-md search-input-md-2-in'>
-          <label className='search-form__label-md' htmlFor='date-in'>
-            Check-in
-          </label>
-          <input
-            className='search-inputs__input-md'
-            id='date-in'
-            type='date'
-            name='date-in'
-            value='Tue 15 Sept 2020'
-          />
-        </div>
-        <div className='search-input-md search-input-md-2-out'>
-          <label className='search-form__label-md' htmlFor='date-out'>
-            Check-out
-          </label>
-          <input
-            className='search-inputs__input-md'
-            id='date-out'
-            type='date'
-            name='date-out'
-            value='Sat 19 Sept 2020'
-          />
-        </div>
-        <input
-          className='search-inputs__input-2'
-          id='date'
-          type='date'
-          name='date'
-          value='Tue 15 Sept — Sat 19 Sept'
-        />
+        <DateRangePicker onChange={setDates} />
         <div className='search-input-md search-inputs__input-3-adults'>
           <label className='search-form__label-md' htmlFor='adults'>
             Adults
