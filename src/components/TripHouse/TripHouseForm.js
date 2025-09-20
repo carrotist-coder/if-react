@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
+import { useHotelsSearch } from '../../contexts/HotelsSearchContext';
 
-const TripHouseForm = ({ handleSearch }) => {
+const TripHouseForm = () => {
   const [destination, setDestination] = useState('');
+  const { handleSearch } = useHotelsSearch();
 
   const handleSubmit = (e) => {
     e.preventDefault();

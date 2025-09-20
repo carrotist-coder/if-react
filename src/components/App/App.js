@@ -5,6 +5,7 @@ import TripHouse from '../TripHouse/TripHouse';
 import axios from 'axios';
 import { API_HOTELS_POPULAR_URL } from '../../services';
 import { useEffect, useState } from 'react';
+import { HotelsSearchProvider } from '../../contexts/HotelsSearchContext';
 
 export const App = () => {
   const [homesGuestsHotels, setHomesGuestsHotels] = useState([]);
@@ -20,10 +21,10 @@ export const App = () => {
   }, []);
 
   return (
-    <>
+    <HotelsSearchProvider>
       <TripHouse />
       <Advantages />
       <HomesGuests hotels={homesGuestsHotels} />
-    </>
+    </HotelsSearchProvider>
   );
 };
