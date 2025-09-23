@@ -1,15 +1,37 @@
 import '../../index.css';
+import { Component } from 'react';
 import Advantages from '../Advantages/Advantages';
 import HomesGuests from '../HomesGuestsLove/HomesGuests';
-import { hotelsData } from '../../utils/hotelsData';
 import TripHouse from '../TripHouse/TripHouse';
+import axios from 'axios';
+import { API_HOTELS_POPULAR_URL } from '../../services';
 
-export const App = () => {
-  return (
-    <>
-      <TripHouse />
-      <Advantages />
-      <HomesGuests hotels={hotelsData} />
-    </>
-  );
-};
+export class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      homesGuestsHotels: [],
+    };
+    this.fetchHotels = this.fetchHotels.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchHotels();
+  }
+
+  fetchHotels() {
+    axios.get(API_HOTELS_POPULAR_URL, {}).then((res) => {
+      this.setState({ homesGuestsHotels: res.data });
+    });
+  }
+
+  render() {
+    return (
+      <>
+        <TripHouse />
+        <Advantages />
+        <HomesGuests hotels={this.state.homesGuestsHotels} />
+      </>
+    );
+  }
+}
