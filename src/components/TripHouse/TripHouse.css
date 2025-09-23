@@ -91,6 +91,7 @@
     text-align: center;
     grid-row: 1;
     grid-column: 5 / span 2;
+    height: 64px;
 }
 
 .search-inputs__input-3 {
@@ -180,6 +181,7 @@
         grid-column: 1 / span 6;
         background-color: #f5bd41;
         border: 8px solid #f5bd41;
+
         gap: 8px;
     }
 
@@ -207,6 +209,7 @@
 
     .search-inputs__input-md {
         flex-basis: 100%;
+        height: 50px;
     }
 
     .search-input-md-2-in {
