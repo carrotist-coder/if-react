@@ -4,6 +4,7 @@ import HotelsList from './HotelsList';
 import './HomesGuests.css';
 
 const HomesGuests = ({ hotels, isAvailableHotels = false }) => {
+  if (isAvailableHotels && hotels?.length === 0) return;
   return (
     <section className='homes-guests'>
       <div className='container'>
