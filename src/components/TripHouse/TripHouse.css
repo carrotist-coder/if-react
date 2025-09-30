@@ -84,7 +84,7 @@
     text-align: center;
 }
 
-.search-inputs__input-2 {
+.search-inputs__input-2, .react-datepicker-wrapper {
     border: 3px solid #f5bd41;
     border-radius: 8px;
     font-size: 18px;

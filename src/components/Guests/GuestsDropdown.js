@@ -40,7 +40,7 @@ const GuestsDropdown = ({ value, onChange }) => {
   const description = `${value.adults} Adult${value.adults !== 1 ? 's' : ''} — ${value.children} Child${value.children !== 1 ? 'ren' : ''} — ${value.rooms} Room${value.rooms !== 1 ? 's' : ''}`;
 
   return (
-    <div ref={dropdownRef}>
+    <div className='guests-dropdown-container'>
       <input
         id='guests-description'
         type='text'
@@ -51,7 +51,7 @@ const GuestsDropdown = ({ value, onChange }) => {
       />
 
       {isOpen && (
-        <div className='guests-dropdown' id='guests-dropdown'>
+        <div className='guests-dropdown' id='guests-dropdown' ref={dropdownRef}>
           {guestsOptions.map((key) => (
             <div className='guests-row' key={key}>
               <label>{key[0].toUpperCase() + key.slice(1)}</label>
