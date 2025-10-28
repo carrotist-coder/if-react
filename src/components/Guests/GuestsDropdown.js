@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './Guests.css';
 import {
@@ -7,6 +6,7 @@ import {
   guestsOptions,
 } from '../../utils/consts';
 import { getEmptyArray } from '../../utils/helpers';
+import PropTypes from 'prop-types';
 
 const GuestsDropdown = ({ value, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -120,6 +120,11 @@ const GuestsDropdown = ({ value, onChange }) => {
       )}
     </div>
   );
+};
+
+GuestsDropdown.propTypes = {
+  value: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default GuestsDropdown;

@@ -1,7 +1,7 @@
-/* eslint-disable react/prop-types */
 import React, { createContext, useContext, useState } from 'react';
 import axios from 'axios';
 import { API_HOTELS_URL } from '../services';
+import PropTypes from 'prop-types';
 
 const HotelsSearchContext = createContext({});
 
@@ -37,4 +37,8 @@ export const HotelsSearchProvider = ({ children }) => {
       {children}
     </HotelsSearchContext.Provider>
   );
+};
+
+HotelsSearchProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };

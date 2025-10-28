@@ -1,7 +1,7 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import HotelsList from './HotelsList';
 import './HomesGuests.css';
+import PropTypes from 'prop-types';
 
 const HomesGuests = ({ hotels, isAvailableHotels = false }) => {
   if (isAvailableHotels && hotels?.length === 0) return;
@@ -17,6 +17,11 @@ const HomesGuests = ({ hotels, isAvailableHotels = false }) => {
       </div>
     </section>
   );
+};
+
+HomesGuests.propTypes = {
+  hotels: PropTypes.array,
+  isAvailableHotels: PropTypes.bool,
 };
 
 export default HomesGuests;

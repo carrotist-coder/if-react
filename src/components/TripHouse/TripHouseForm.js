@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { useHotelsSearch } from '../../contexts/HotelsSearchContext';
 import DateRangePicker from '../DateRangePicker/DateRangePicker';

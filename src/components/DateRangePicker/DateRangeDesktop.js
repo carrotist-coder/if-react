@@ -1,6 +1,6 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import DatePicker from 'react-datepicker';
+import PropTypes from 'prop-types';
 
 const DateRangeDesktop = ({ startDate, endDate, onDatesChange }) => {
   const handleChange = (dates) => {
@@ -19,6 +19,12 @@ const DateRangeDesktop = ({ startDate, endDate, onDatesChange }) => {
       className='search-inputs__input-2'
     />
   );
+};
+
+DateRangeDesktop.propTypes = {
+  startDate: PropTypes.instanceOf(Date),
+  endDate: PropTypes.instanceOf(Date),
+  onDatesChange: PropTypes.func.isRequired,
 };
 
 export default DateRangeDesktop;

@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const HotelCard = ({ hotel }) => {
   return (
@@ -15,6 +15,10 @@ const HotelCard = ({ hotel }) => {
       </figure>
     </div>
   );
+};
+
+HotelCard.propTypes = {
+  hotel: PropTypes.object.isRequired,
 };
 
 export default HotelCard;

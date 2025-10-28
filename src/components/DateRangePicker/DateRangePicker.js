@@ -1,8 +1,8 @@
-/* eslint-disable react/prop-types */
 import React, { useState, useEffect, useCallback } from 'react';
 import DateRangeDesktop from './DateRangeDesktop';
 import DateRangeMobile from './DateRangeMobile';
 import 'react-datepicker/dist/react-datepicker.css';
+import PropTypes from 'prop-types';
 
 const DateRangePicker = ({ onChange }) => {
   const [startDate, setStartDate] = useState(null);
@@ -42,6 +42,10 @@ const DateRangePicker = ({ onChange }) => {
       )}
     </>
   );
+};
+
+DateRangePicker.propTypes = {
+  onChange: PropTypes.func,
 };
 
 export default DateRangePicker;
