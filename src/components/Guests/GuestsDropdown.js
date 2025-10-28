@@ -6,6 +6,7 @@ import {
   guestsLimits,
   guestsOptions,
 } from '../../utils/consts';
+import { getEmptyArray } from '../../utils/helpers';
 
 const GuestsDropdown = ({ value, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +24,7 @@ const GuestsDropdown = ({ value, onChange }) => {
 
   useEffect(() => {
     document.addEventListener('click', handleClick);
+
     return () => document.removeEventListener('click', handleClick);
   }, []);
 
@@ -34,10 +36,17 @@ const GuestsDropdown = ({ value, onChange }) => {
         Math.max(guestsLimits[key].min, value[key] + delta),
       ),
     };
+
     onChange(newValue);
   };
 
-  const description = `${value.adults} Adult${value.adults !== 1 ? 's' : ''} — ${value.children} Child${value.children !== 1 ? 'ren' : ''} — ${value.rooms} Room${value.rooms !== 1 ? 's' : ''}`;
+  const getDescriptionForAdults = (adults, children, rooms) => {
+    const adultsText = `${adults} Adult${adults !== 1 ? 's' : ''}`;
+    const childrenText = `${children} Child${children !== 1 ? 'ren' : ''}`;
+    const roomsText = `${rooms} Room${rooms !== 1 ? 's' : ''}`;
+
+    return `${adultsText} — ${childrenText} — ${roomsText}`;
+  };
 
   return (
     <div className='guests-dropdown-container'>
@@ -45,7 +54,11 @@ const GuestsDropdown = ({ value, onChange }) => {
         id='guests-description'
         type='text'
         readOnly
-        value={description}
+        value={getDescriptionForAdults(
+          value.adults,
+          value.children,
+          value.rooms,
+        )}
         onClick={() => setIsOpen(true)}
         className='search-inputs__input-3'
       />
@@ -89,9 +102,9 @@ const GuestsDropdown = ({ value, onChange }) => {
                 What is the age of the child you&apos;re travelling with?
               </label>
               <div id='child-age-selects'>
-                {Array.from({ length: value.children }).map((el, i) => (
+                {getEmptyArray(value.children).map((el, i) => (
                   <select key={i} className='child-age-select'>
-                    {Array.from({ length: guestChildrenMaxAge + 1 }).map(
+                    {getEmptyArray(guestChildrenMaxAge + 1).map(
                       (ageEl, age) => (
                         <option key={age} value={age}>
                           {age} years old
