@@ -1,6 +1,6 @@
 .guests-dropdown-container {
-    position: relative;
-    display: contents; /* Проблема: отлично показывает форму грид но перестаёт работать позиционирование guests-dropdown   */
+    grid-row: 1;
+    grid-column: 7 / span 4;
 }
 
 .guests-dropdown {
