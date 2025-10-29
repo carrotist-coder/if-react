@@ -18,6 +18,9 @@ const TripHouseForm = memo(() => {
     (e) => {
       e.preventDefault();
       handleSearch(destination);
+      setTimeout(() => {
+        scrollToHotels();
+      }, 100);
     },
     [dates, destination, handleSearch],
   );
@@ -33,6 +36,15 @@ const TripHouseForm = memo(() => {
   const handleGuestsChange = useCallback((newGuests) => {
     setGuests(newGuests);
   }, []);
+
+  const scrollToHotels = () => {
+    const element = document.getElementById('available-hotels');
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  };
 
   return (
     <form className='search-form' onSubmit={handleSubmit}>

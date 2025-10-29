@@ -6,7 +6,10 @@ import PropTypes from 'prop-types';
 const HomesGuests = ({ hotels, isAvailableHotels = false }) => {
   if (isAvailableHotels && hotels?.length === 0) return;
   return (
-    <section className='homes-guests'>
+    <section
+      className='homes-guests'
+      id={isAvailableHotels ? 'available-hotels' : 'homes-guests'}
+    >
       <div className='container'>
         <div className='heading'>
           <h1 className='heading__text'>
