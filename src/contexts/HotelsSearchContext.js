@@ -1,7 +1,7 @@
-/* eslint-disable react/prop-types */
 import React, { createContext, useContext, useState } from 'react';
 import axios from 'axios';
 import { API_HOTELS_URL } from '../services';
+import PropTypes from 'prop-types';
 
 const HotelsSearchContext = createContext({});
 
@@ -14,6 +14,7 @@ export const HotelsSearchProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = (searchTerm) => {
+    console.log('Starting search with term:', searchTerm);
     setSearchTerm(searchTerm);
     axios
       .get(API_HOTELS_URL, {
@@ -22,7 +23,12 @@ export const HotelsSearchProvider = ({ children }) => {
         },
       })
       .then((res) => {
+        console.log('Search successful, received data:', res.data);
         setFilteredHotels(res.data);
+      })
+      .catch((error) => {
+        console.error('Search failed:', error);
+        setFilteredHotels([]);
       });
   };
 
@@ -37,4 +43,8 @@ export const HotelsSearchProvider = ({ children }) => {
       {children}
     </HotelsSearchContext.Provider>
   );
+};
+
+HotelsSearchProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };

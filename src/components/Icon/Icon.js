@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Icon = ({ icon }) => {
   return (
@@ -7,6 +7,10 @@ const Icon = ({ icon }) => {
       <use xlinkHref={`/icons/sprite.svg#${icon}`} />
     </svg>
   );
+};
+
+Icon.propTypes = {
+  icon: PropTypes.string.isRequired,
 };
 
 export default Icon;

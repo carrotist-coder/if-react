@@ -1,17 +1,49 @@
-/* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { useHotelsSearch } from '../../contexts/HotelsSearchContext';
 import DateRangePicker from '../DateRangePicker/DateRangePicker';
+import GuestsDropdown from '../Guests/GuestsDropdown';
 
-const TripHouseForm = () => {
+const TripHouseForm = memo(() => {
   const [destination, setDestination] = useState('');
   const [dates, setDates] = useState({});
+  const [guests, setGuests] = useState({
+    adults: 1,
+    children: 0,
+    rooms: 1,
+  });
+
   const { handleSearch } = useHotelsSearch();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(dates);
-    handleSearch(destination);
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      handleSearch(destination);
+      setTimeout(() => {
+        scrollToHotels();
+      }, 100);
+    },
+    [dates, destination, handleSearch],
+  );
+
+  const handleDestinationChange = useCallback((e) => {
+    setDestination(e.target.value);
+  }, []);
+
+  const handleDatesChange = useCallback((start, end) => {
+    setDates({ start, end });
+  }, []);
+
+  const handleGuestsChange = useCallback((newGuests) => {
+    setGuests(newGuests);
+  }, []);
+
+  const scrollToHotels = () => {
+    const element = document.getElementById('available-hotels');
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
   };
 
   return (
@@ -35,102 +67,17 @@ const TripHouseForm = () => {
             id='destination'
             type='text'
             name='destination'
-            onChange={(e) => setDestination(e.target.value)}
+            onChange={handleDestinationChange}
           />
         </div>
-        <DateRangePicker onChange={setDates} />
-        <div className='search-input-md search-inputs__input-3-adults'>
-          <label className='search-form__label-md' htmlFor='adults'>
-            Adults
-          </label>
-          <input
-            className='search-inputs__input-3 search-inputs__input-md-3 search-inputs__input-md'
-            id='adults'
-            type='number'
-            name='adults'
-            value='2'
-          />
-        </div>
-        <div className='search-input-md search-inputs__input-3-children'>
-          <label className='search-form__label-md' htmlFor='children'>
-            Children
-          </label>
-          <input
-            className='search-inputs__input-3 search-inputs__input-md-3 search-inputs__input-md'
-            id='children'
-            type='number'
-            name='children'
-            value='0'
-          />
-        </div>
-        <div className='search-input-md search-inputs__input-3-rooms'>
-          <label className='search-form__label-md' htmlFor='rooms'>
-            Rooms
-          </label>
-          <input
-            className='search-inputs__input-3 search-inputs__input-md-3 search-inputs__input-md'
-            id='rooms'
-            type='number'
-            name='rooms'
-            value='1'
-          />
-        </div>
-        <label className='search-form__label' htmlFor='description'></label>
-        <input
-          className='search-inputs__input-3'
-          id='description'
-          type='text'
-          name='description'
-          value='2 Adults — 0 Children — 1 Room'
-        />
-        <div className='guests-dropdown' id='guests-dropdown'>
-          <div className='guests-row'>
-            <label>Adults</label>
-            <button type='button' className='guests-btn-decrease'>
-              −
-            </button>
-            <span id='adults-count'>1</span>
-            <button type='button' className='guests-btn-increase'>
-              +
-            </button>
-          </div>
-          <div className='guests-row'>
-            <label>Children</label>
-            <button
-              type='button'
-              className='guests-btn-decrease guests-btn-disabled'
-            >
-              −
-            </button>
-            <span id='children-count'>0</span>
-            <button type='button' className='guests-btn-increase'>
-              +
-            </button>
-          </div>
-          <div className='guests-row'>
-            <label>Rooms</label>
-            <button
-              type='button'
-              className='guests-btn-decrease guests-btn-disabled'
-            >
-              −
-            </button>
-            <span id='rooms-count'>1</span>
-            <button type='button' className='guests-btn-increase'>
-              +
-            </button>
-          </div>
-          <div className='guests-row' id='child-age-container'>
-            <label id='child-age-label'>
-              What is the age of the child you&#39;re travelling with?
-            </label>
-            <div id='child-age-selects'></div>
-          </div>
-        </div>
+        <DateRangePicker onChange={handleDatesChange} />
+        <GuestsDropdown value={guests} onChange={handleGuestsChange} />
         <button className='search-form__button'>Search</button>
       </div>
     </form>
   );
-};
+});
+
+TripHouseForm.displayName = 'TripHouseForm';
 
 export default TripHouseForm;
