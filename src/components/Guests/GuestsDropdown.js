@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, memo } from 'react';
 import './Guests.css';
 import {
   guestChildrenMaxAge,
@@ -8,7 +8,7 @@ import {
 import { getEmptyArray } from '../../utils/helpers';
 import PropTypes from 'prop-types';
 
-const GuestsDropdown = ({ value, onChange }) => {
+const GuestsDropdown = memo(({ value, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -28,25 +28,28 @@ const GuestsDropdown = ({ value, onChange }) => {
     return () => document.removeEventListener('click', handleClick);
   }, []);
 
-  const handleChange = (key, delta) => {
-    const newValue = {
-      ...value,
-      [key]: Math.min(
-        guestsLimits[key].max,
-        Math.max(guestsLimits[key].min, value[key] + delta),
-      ),
-    };
+  const handleChange = useCallback(
+    (key, delta) => {
+      const newValue = {
+        ...value,
+        [key]: Math.min(
+          guestsLimits[key].max,
+          Math.max(guestsLimits[key].min, value[key] + delta),
+        ),
+      };
 
-    onChange(newValue);
-  };
+      onChange(newValue);
+    },
+    [value, onChange],
+  );
 
-  const getDescriptionForAdults = (adults, children, rooms) => {
+  const getDescriptionForAdults = useCallback((adults, children, rooms) => {
     const adultsText = `${adults} Adult${adults !== 1 ? 's' : ''}`;
     const childrenText = `${children} Child${children !== 1 ? 'ren' : ''}`;
     const roomsText = `${rooms} Room${rooms !== 1 ? 's' : ''}`;
 
     return `${adultsText} — ${childrenText} — ${roomsText}`;
-  };
+  }, []);
 
   return (
     <div className='guests-dropdown-container'>
@@ -120,7 +123,9 @@ const GuestsDropdown = ({ value, onChange }) => {
       )}
     </div>
   );
-};
+});
+
+GuestsDropdown.displayName = 'GuestsDropdown';
 
 GuestsDropdown.propTypes = {
   value: PropTypes.object.isRequired,

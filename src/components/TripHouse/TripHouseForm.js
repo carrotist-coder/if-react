@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { useHotelsSearch } from '../../contexts/HotelsSearchContext';
 import DateRangePicker from '../DateRangePicker/DateRangePicker';
 import GuestsDropdown from '../Guests/GuestsDropdown';
 
-const TripHouseForm = () => {
+const TripHouseForm = memo(() => {
   const [destination, setDestination] = useState('');
   const [dates, setDates] = useState({});
   const [guests, setGuests] = useState({
@@ -14,11 +14,25 @@ const TripHouseForm = () => {
 
   const { handleSearch } = useHotelsSearch();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(dates);
-    handleSearch(destination);
-  };
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      handleSearch(destination);
+    },
+    [dates, destination, handleSearch],
+  );
+
+  const handleDestinationChange = useCallback((e) => {
+    setDestination(e.target.value);
+  }, []);
+
+  const handleDatesChange = useCallback((start, end) => {
+    setDates({ start, end });
+  }, []);
+
+  const handleGuestsChange = useCallback((newGuests) => {
+    setGuests(newGuests);
+  }, []);
 
   return (
     <form className='search-form' onSubmit={handleSubmit}>
@@ -41,15 +55,17 @@ const TripHouseForm = () => {
             id='destination'
             type='text'
             name='destination'
-            onChange={(e) => setDestination(e.target.value)}
+            onChange={handleDestinationChange}
           />
         </div>
-        <DateRangePicker onChange={setDates} />
-        <GuestsDropdown value={guests} onChange={setGuests} />
+        <DateRangePicker onChange={handleDatesChange} />
+        <GuestsDropdown value={guests} onChange={handleGuestsChange} />
         <button className='search-form__button'>Search</button>
       </div>
     </form>
   );
-};
+});
+
+TripHouseForm.displayName = 'TripHouseForm';
 
 export default TripHouseForm;

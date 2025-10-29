@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import DatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
 
-const DateRangeDesktop = ({ startDate, endDate, onDatesChange }) => {
-  const handleChange = (dates) => {
-    const [start, end] = dates;
-    onDatesChange(start, end);
-  };
+const DateRangeDesktop = memo(({ startDate, endDate, onDatesChange }) => {
+  const handleChange = useCallback(
+    (dates) => {
+      const [start, end] = dates;
+      onDatesChange(start, end);
+    },
+    [onDatesChange],
+  );
 
   return (
     <DatePicker
@@ -19,7 +22,9 @@ const DateRangeDesktop = ({ startDate, endDate, onDatesChange }) => {
       className='search-inputs__input-2'
     />
   );
-};
+});
+
+DateRangeDesktop.displayName = 'DateRangeDesktop';
 
 DateRangeDesktop.propTypes = {
   startDate: PropTypes.instanceOf(Date),

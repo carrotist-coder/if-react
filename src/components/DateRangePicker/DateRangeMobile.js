@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import DatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
 
-const DateRangeMobile = ({ startDate, endDate, onDatesChange }) => {
-  const handleStartDateChange = (date) => {
-    onDatesChange(date, endDate);
-  };
+const DateRangeMobile = memo(({ startDate, endDate, onDatesChange }) => {
+  const handleStartDateChange = useCallback(
+    (date) => {
+      onDatesChange(date, endDate);
+    },
+    [onDatesChange, endDate],
+  );
 
-  const handleEndDateChange = (date) => {
-    onDatesChange(startDate, date);
-  };
+  const handleEndDateChange = useCallback(
+    (date) => {
+      onDatesChange(startDate, date);
+    },
+    [onDatesChange, startDate],
+  );
 
   return (
     <>
@@ -49,7 +55,9 @@ const DateRangeMobile = ({ startDate, endDate, onDatesChange }) => {
       </div>
     </>
   );
-};
+});
+
+DateRangeMobile.displayName = 'DateRangeMobile';
 
 DateRangeMobile.propTypes = {
   startDate: PropTypes.instanceOf(Date),
