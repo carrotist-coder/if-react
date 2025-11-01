@@ -84,7 +84,7 @@
     text-align: center;
 }
 
-.search-inputs__input-2 {
+.search-inputs__input-2, .react-datepicker-wrapper {
     border: 3px solid #f5bd41;
     border-radius: 8px;
     font-size: 18px;
@@ -98,8 +98,8 @@
     border: 3px none #ffffff;
     font-size: 18px;
     text-align: center;
-    grid-row: 1;
-    grid-column: 7 / span 4;
+    width: 100%;
+    height: 100%;
 }
 
 .search-inputs__input-3-adults {
